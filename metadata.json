@@ -1,0 +1,6 @@
+{
+  "name": "Aivum",
+  "description": "A global platform for importing, exporting, and sourcing high-quality equipment and machinery for private aircraft, engines, avionics, landing gear, and cabin systems.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
