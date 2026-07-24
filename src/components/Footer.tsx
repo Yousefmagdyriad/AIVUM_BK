@@ -7,7 +7,7 @@ import { LANGUAGES, TRANSLATIONS } from '../data';
 import { Language } from '../types';
 import { Globe, Github, Twitter, Linkedin, Check } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 
 interface FooterProps {
   currentLang: Language;
@@ -165,13 +165,11 @@ export default function Footer({ currentLang, onLangChange, onNavClick }: Footer
                 <span>{LANGUAGES.find((l) => l.code === currentLang)?.nativeName}</span>
               </button>
 
-              <AnimatePresence>
-                {langOpen && (
+              {langOpen && (
                   <motion.div
                     id="footer-lang-dropdown"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
                     className={`absolute bottom-full mb-2 w-44 bg-[#0a0f1c] border border-gray-800 rounded shadow-xl py-1 z-50 ${isRtl ? 'right-0' : 'left-0'}`}
                   >
                     {LANGUAGES.map((lang) => (
@@ -192,7 +190,6 @@ export default function Footer({ currentLang, onLangChange, onNavClick }: Footer
                     ))}
                   </motion.div>
                 )}
-              </AnimatePresence>
             </div>
           </div>
         </div>

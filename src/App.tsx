@@ -13,7 +13,7 @@ import Stats from './components/Stats';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -68,12 +68,12 @@ export default function App() {
 
   return (
     <div id="aivum-app" className="bg-[#05070d] text-white min-h-screen relative font-sans">
-      <AnimatePresence mode="wait">
-        {loading ? (
+      {loading ? (
           // 3.1 Loading / Boot Moment
           <motion.div
             key="loader"
             initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
             className="fixed inset-0 bg-[#05070d] z-50 flex flex-col items-center justify-center"
@@ -139,7 +139,6 @@ export default function App() {
         ) : (
           // Main Website Structure (Staggered Fade-in)
           <motion.div
-            key="content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -186,7 +185,6 @@ export default function App() {
             />
           </motion.div>
         )}
-      </AnimatePresence>
     </div>
   );
 }

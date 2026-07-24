@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { Globe, Menu, X, Check } from 'lucide-react';
 import { LANGUAGES, TRANSLATIONS } from '../data';
 import { Language } from '../types';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 
 interface NavbarProps {
   currentLang: Language;
@@ -133,13 +133,11 @@ export default function Navbar({
                 <span>{LANGUAGES.find(l => l.code === currentLang)?.name}</span>
               </button>
 
-              <AnimatePresence>
-                {langOpen && (
+              {langOpen && (
                   <motion.div
                     id="lang-dropdown"
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.15 }}
                     className={`absolute mt-2 w-48 bg-[#0a0f1c] border border-gray-800 rounded-lg shadow-xl shadow-black/50 py-1 overflow-hidden z-50 ${
                       isRtl ? 'left-0 origin-top-left' : 'right-0 origin-top-right'
@@ -167,7 +165,6 @@ export default function Navbar({
                     ))}
                   </motion.div>
                 )}
-              </AnimatePresence>
             </div>
           </div>
 
@@ -183,13 +180,11 @@ export default function Navbar({
               >
                 <Globe className="w-4 h-4" />
               </button>
-              <AnimatePresence>
-                {langOpen && (
+              {langOpen && (
                   <motion.div
                     id="mobile-lang-dropdown"
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 5 }}
                     className={`absolute mt-1 w-36 bg-[#0a0f1c] border border-gray-800 rounded-md shadow-lg py-1 z-50 ${
                       isRtl ? 'left-0' : 'right-0'
                     }`}
@@ -208,7 +203,6 @@ export default function Navbar({
                     ))}
                   </motion.div>
                 )}
-              </AnimatePresence>
             </div>
 
             {/* Mobile menu trigger */}
@@ -225,13 +219,11 @@ export default function Navbar({
       </header>
 
       {/* Full-screen mobile navigation overlay */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
+      {mobileMenuOpen && (
           <motion.div
             id="mobile-nav-overlay"
             initial={{ opacity: 0, y: '-100%' }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '-100%' }}
             transition={{ type: 'tween', duration: 0.35, ease: 'easeInOut' }}
             className="fixed inset-0 bg-[#05070d] z-40 flex flex-col justify-center items-center px-6"
           >
@@ -272,7 +264,6 @@ export default function Navbar({
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
     </>
   );
 }
